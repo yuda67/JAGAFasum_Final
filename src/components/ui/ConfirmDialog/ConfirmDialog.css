@@ -1,0 +1,110 @@
+.confirm {
+  padding: 40px 36px 32px;
+  font-family: var(--font-sans);
+  text-align: center;
+}
+
+.confirm__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: var(--c-lime-soft);
+  color: var(--c-forest-deep);
+  animation: confirm-icon-in 0.6s var(--ease-spring) 0.12s both;
+}
+
+.confirm__icon > svg {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+/* Gelombang lembut di sekitar ikon */
+.confirm__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  opacity: 0;
+  animation: confirm-ring 2.4s var(--ease-out) 0.5s infinite;
+}
+
+.confirm__ring--late {
+  animation-delay: 1.7s;
+}
+
+.confirm--danger .confirm__icon {
+  background: var(--c-danger-bg);
+  color: var(--c-danger);
+}
+
+.confirm__title {
+  margin: 0;
+  color: var(--c-ink);
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.confirm__body {
+  margin: 12px auto 0;
+  max-width: 34ch;
+  color: var(--c-text-soft);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.confirm__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.confirm__btn {
+  width: 100%;
+  height: 54px;
+  font-size: 1.0625rem;
+}
+
+@keyframes confirm-icon-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(-14deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes confirm-ring {
+  0% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+@media (max-width: 479px) {
+  .confirm {
+    padding: 32px 22px 22px;
+  }
+
+  .confirm__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .confirm__actions .confirm__btn:last-child {
+    grid-row: 1;
+  }
+}

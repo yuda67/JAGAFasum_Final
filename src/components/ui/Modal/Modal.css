@@ -1,0 +1,83 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  animation: fade-in 0.28s var(--ease-out) both;
+}
+
+.modal.is-closing {
+  animation: modal-fade-out 0.24s var(--ease-in-out) both;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(18 42 10 / 0.5);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+.modal__panel {
+  position: relative;
+  width: 100%;
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
+  border-radius: 28px;
+  background: var(--c-surface);
+  box-shadow: var(--shadow-pop);
+  overscroll-behavior: contain;
+  animation: modal-pop-in 0.46s var(--ease-spring) both;
+}
+
+.modal__panel:focus {
+  outline: none;
+}
+
+.modal__panel--sm {
+  max-width: 440px;
+}
+
+.modal__panel--lg {
+  max-width: 880px;
+}
+
+.modal.is-closing .modal__panel {
+  animation: modal-pop-out 0.24s var(--ease-in-out) both;
+}
+
+@keyframes modal-pop-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes modal-pop-out {
+  to {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.95);
+  }
+}
+
+@keyframes modal-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .modal {
+    padding: 14px;
+  }
+
+  .modal__panel {
+    border-radius: 22px;
+  }
+}

@@ -1,0 +1,165 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  height: 70px;
+  padding: 0 1.2em;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-full);
+  font: 700 1.5rem/1 var(--font-sans);
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn:disabled,
+.btn.is-loading {
+  cursor: progress;
+}
+
+.btn__label {
+  display: inline-block;
+}
+
+.btn__spinner {
+  width: 0.85em;
+  height: 0.85em;
+  border: 2.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Varian "soft": tombol Login di hero */
+.btn--soft {
+  background: var(--c-lime-soft);
+  color: var(--c-cream);
+  text-shadow: var(--shadow-text);
+}
+
+/* Varian "glass": tombol Register (kaca transparan) */
+.btn--glass {
+  border-color: rgb(255 255 255 / 0.6);
+  background: rgb(255 255 255 / 0.08);
+  color: var(--c-cream);
+  text-shadow: var(--shadow-text);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* Varian "solid": tombol submit Login/Register */
+.btn--solid {
+  background: var(--c-btn);
+  color: var(--c-btn-text);
+  font-family: var(--font-auth);
+  font-weight: 500;
+}
+
+.btn--solid:focus-visible {
+  outline-color: var(--c-link);
+}
+
+@media (hover: hover) {
+  .btn--soft:hover {
+    background: var(--c-lime-soft-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px -10px rgb(20 60 15 / 0.5);
+  }
+
+  .btn--glass:hover {
+    background: rgb(255 255 255 / 0.18);
+    border-color: rgb(255 255 255 / 0.85);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px -12px rgb(20 60 15 / 0.45);
+  }
+
+  .btn--solid:hover:not(:disabled) {
+    background: var(--c-btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px -14px rgb(40 110 20 / 0.65);
+  }
+}
+
+/* ---------- Varian area dashboard ---------- */
+.btn--primary,
+.btn--outline,
+.btn--danger,
+.btn--lime {
+  height: 54px;
+  padding: 0 1.25em;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.btn--sm {
+  height: 44px;
+  padding: 0 1.1em;
+  font-size: 1rem;
+}
+
+.btn--primary {
+  background: var(--c-btn);
+  color: var(--c-white);
+  box-shadow: 0 10px 22px -14px rgb(40 110 20 / 0.8);
+}
+
+.btn--outline {
+  border-color: var(--c-line-cream-strong);
+  background: var(--c-surface);
+  color: var(--c-gray-800);
+}
+
+.btn--danger {
+  background: var(--c-danger);
+  color: var(--c-white);
+}
+
+.btn--lime {
+  background: var(--c-lime);
+  color: var(--c-forest-deep);
+}
+
+.btn--primary:focus-visible,
+.btn--outline:focus-visible,
+.btn--danger:focus-visible {
+  outline-color: var(--c-link);
+}
+
+@media (hover: hover) {
+  .btn--primary:hover:not(:disabled) {
+    background: var(--c-btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px -14px rgb(40 110 20 / 0.7);
+  }
+
+  .btn--outline:hover:not(:disabled) {
+    border-color: var(--c-btn);
+    color: var(--c-forest-deep);
+    transform: translateY(-2px);
+  }
+
+  .btn--danger:hover:not(:disabled) {
+    background: #a8370a;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px -14px rgb(160 50 10 / 0.6);
+  }
+
+  .btn--lime:hover:not(:disabled) {
+    background: var(--c-lime-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px -14px rgb(10 40 5 / 0.6);
+  }
+}

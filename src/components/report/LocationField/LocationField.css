@@ -1,0 +1,207 @@
+.location-field__row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.location-field__control {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  border-radius: var(--radius-field);
+}
+
+/* Kilau "memindai" di dalam input saat mencari lokasi */
+.location-field__scan {
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgb(192 255 114 / 0.45) 50%,
+    transparent 80%
+  );
+  background-size: 220% 100%;
+  pointer-events: none;
+  animation: location-scan 1.3s linear infinite;
+}
+
+/* Tombol persis desain: 279×57, ikon pin putih, 24px semibold */
+.location-field__btn {
+  flex: none;
+  width: 279px;
+  height: 57px;
+  gap: 14px;
+  font-size: 1.5rem;
+}
+
+.location-field__btn .btn__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.location-field__pin {
+  width: 19px;
+  height: 30px;
+  transition: transform 0.45s var(--ease-spring);
+}
+
+@media (hover: hover) {
+  .location-field__btn:hover .location-field__pin {
+    transform: translateY(-3px);
+  }
+}
+
+.location-field__notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 0 4px;
+  color: var(--c-forest-deep);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  animation: fade-up 0.3s var(--ease-out) both;
+}
+
+.location-field__notice svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.location-field__map {
+  position: relative;
+  height: 240px;
+  margin-top: 16px;
+  overflow: hidden;
+  border: 3px solid var(--c-line-cream);
+  border-radius: 20px;
+  background: #e8efe2;
+  animation: location-map-in 0.55s var(--ease-out) both;
+}
+
+.location-field__map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.location-field__map-bar {
+  position: absolute;
+  inset: auto 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.location-field__map-bar > * {
+  pointer-events: auto;
+}
+
+.location-field__coords,
+.location-field__map-link,
+.location-field__clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  background: rgb(255 255 255 / 0.94);
+  color: var(--c-forest-deep);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 6px 16px -8px rgb(0 0 0 / 0.4);
+}
+
+.location-field__coords {
+  font-variant-numeric: tabular-nums;
+}
+
+.location-field__map-link {
+  margin-left: auto;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.location-field__coords svg,
+.location-field__map-link svg,
+.location-field__clear svg {
+  width: 16px;
+  height: 16px;
+}
+
+.location-field__clear {
+  justify-content: center;
+  width: 36px;
+  padding: 0;
+  color: var(--c-gray-800);
+}
+
+@media (hover: hover) {
+  .location-field__map-link:hover {
+    background: var(--c-lime);
+  }
+
+  .location-field__clear:hover {
+    background: var(--c-danger);
+    color: var(--c-white);
+  }
+}
+
+@keyframes location-scan {
+  from {
+    background-position: 120% 0;
+  }
+  to {
+    background-position: -120% 0;
+  }
+}
+
+@keyframes location-map-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .location-field__row {
+    gap: 14px;
+  }
+
+  .location-field__btn {
+    width: auto;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .location-field__row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .location-field__btn {
+    width: 100%;
+    height: 52px;
+    font-size: 1.125rem;
+  }
+
+  .location-field__map {
+    height: 200px;
+  }
+
+  .location-field__coords {
+    display: none;
+  }
+}

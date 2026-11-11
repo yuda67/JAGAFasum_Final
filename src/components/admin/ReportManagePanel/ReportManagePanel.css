@@ -1,0 +1,560 @@
+.manage-panel {
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card), 0 0 0 1px rgb(30 70 15 / 0.05);
+  animation: fade-up 0.45s var(--ease-out) both;
+}
+
+.manage-panel__media {
+  position: relative;
+  height: 280px;
+  background: #1f2a17;
+}
+
+.manage-panel__img,
+.manage-panel__compare {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.manage-panel__body {
+  display: grid;
+  gap: 16px;
+  padding: 24px 26px 28px;
+}
+
+.manage-panel__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.manage-panel__category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 11px 0 8px;
+  border-radius: var(--radius-full);
+  background: var(--c-lime-soft);
+  color: var(--c-forest-deep);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.manage-panel__category svg {
+  width: 15px;
+  height: 15px;
+}
+
+.manage-panel__title {
+  margin: -4px 0 0;
+  color: var(--c-ink);
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.manage-panel__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 18px;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--c-dash-bg);
+}
+
+.manage-panel__fact--wide {
+  grid-column: 1 / -1;
+}
+
+.manage-panel__facts dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--c-gray-600);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.manage-panel__facts dt svg {
+  width: 14px;
+  height: 14px;
+}
+
+.manage-panel__facts dd {
+  margin: 4px 0 0;
+  color: var(--c-ink);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.manage-panel__map {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  color: var(--c-link);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.manage-panel__map svg {
+  width: 13px;
+  height: 13px;
+}
+
+.manage-panel__map:hover {
+  text-decoration: underline;
+}
+
+.manage-panel__desc {
+  margin: 0;
+  color: var(--c-gray-800);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.manage-panel__section {
+  display: grid;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1.5px solid #efeee6;
+}
+
+.manage-panel__heading {
+  margin: 0;
+  color: var(--c-dash-title);
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+/* ---------- Peringatan ---------- */
+.manage-alert {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #f1f0ea;
+  color: var(--c-gray-800);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  animation: fade-up 0.4s var(--ease-out) both;
+}
+
+.manage-alert p {
+  margin: 0;
+}
+
+.manage-alert__icon {
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+}
+
+.manage-alert--danger {
+  background: var(--c-status-pending-bg);
+  color: #6e2c19;
+}
+
+.manage-alert--amber {
+  background: var(--c-status-progress-bg);
+  color: #5b4500;
+}
+
+.manage-alert__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 8px;
+}
+
+.manage-alert__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+.manage-alert__actions .manage-alert__link {
+  margin-top: 0;
+}
+
+.manage-alert__link svg {
+  width: 15px;
+  height: 15px;
+}
+
+.manage-alert__link--muted {
+  color: var(--c-gray-600);
+}
+
+/* ---------- Stepper status ---------- */
+.manage-stepper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.manage-stepper__step {
+  --tone: var(--c-status-pending);
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  color: var(--c-placeholder);
+  text-align: center;
+}
+
+.manage-stepper__step--progress {
+  --tone: var(--c-status-progress);
+}
+
+.manage-stepper__step--done {
+  --tone: var(--c-status-done);
+}
+
+.manage-stepper__step + .manage-stepper__step::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  right: calc(50% + 22px);
+  left: calc(-50% + 22px);
+  height: 3px;
+  border-radius: 3px;
+  background: #e7e7df;
+}
+
+.manage-stepper__step.is-done + .manage-stepper__step.is-done::before {
+  background: var(--tone);
+}
+
+.manage-stepper__dot {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 2px solid #e7e7df;
+  border-radius: 50%;
+  background: var(--c-surface);
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: all var(--dur-base) var(--ease-out);
+}
+
+.manage-stepper__dot svg {
+  width: 17px;
+  height: 17px;
+  stroke-width: 2.6;
+}
+
+.manage-stepper__step.is-done .manage-stepper__dot {
+  border-color: var(--tone);
+  background: var(--tone);
+  color: var(--c-white);
+}
+
+.manage-stepper__step.is-current .manage-stepper__dot {
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--tone) 22%, transparent);
+  animation: stepper-pop 0.5s var(--ease-spring) both;
+}
+
+.manage-stepper__label {
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.manage-stepper__step.is-done .manage-stepper__label {
+  color: var(--c-ink);
+}
+
+.manage-stepper__date {
+  color: var(--c-gray-600);
+  font-size: 0.75rem;
+}
+
+@keyframes stepper-pop {
+  from {
+    transform: scale(0.6);
+  }
+}
+
+/* ---------- Form aksi ---------- */
+.manage-form {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border: 1.5px solid var(--c-status-progress-bg);
+  border-radius: 18px;
+  background: linear-gradient(170deg, #fffbea, var(--c-surface) 55%);
+  animation: fade-up 0.4s var(--ease-out) both;
+}
+
+.manage-form--finish {
+  border-color: var(--c-status-done-bg);
+  background: linear-gradient(170deg, #f2fbe9, var(--c-surface) 55%);
+}
+
+.manage-form__head {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.manage-form__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  background: var(--c-status-progress);
+  color: var(--c-white);
+}
+
+.manage-form--finish .manage-form__icon {
+  background: var(--c-status-done);
+}
+
+.manage-form__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.manage-form__title {
+  margin: 0;
+  color: var(--c-ink);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.manage-form__hint {
+  margin: 2px 0 0;
+  color: var(--c-text-soft);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.manage-form__photos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
+.manage-form__photos:not(.is-pair) {
+  max-width: 320px;
+}
+
+.manage-form__photos.is-pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.manage-form__label {
+  display: flex;
+  gap: 6px;
+  margin-top: 2px;
+  color: var(--c-ink);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.manage-form__textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--c-line-cream-strong);
+  border-radius: 14px;
+  background: var(--c-surface);
+  color: var(--c-ink);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  resize: vertical;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.manage-form__textarea:focus {
+  border-color: var(--c-btn);
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(79 163 52 / 0.16);
+}
+
+.manage-form .report-error {
+  margin: 0;
+}
+
+.manage-form__submit {
+  justify-self: start;
+}
+
+.manage-form__submit .btn__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.manage-form__submit-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.manage-form__submit--progress {
+  background: #b99600;
+  box-shadow: 0 10px 22px -14px rgb(140 110 0 / 0.9);
+}
+
+@media (hover: hover) {
+  .manage-form__submit--progress:hover:not(:disabled) {
+    background: #a68600;
+  }
+}
+
+.manage-form__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- Ringkasan selesai ---------- */
+.manage-done {
+  display: grid;
+  gap: 6px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: var(--c-status-done-bg);
+}
+
+.manage-done__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--c-forest-deep);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.manage-done__title svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.6;
+}
+
+.manage-done__by {
+  margin: 0;
+  color: var(--c-text-soft);
+  font-size: 0.8125rem;
+}
+
+.manage-done__note {
+  margin: 4px 0 0;
+  color: var(--c-gray-800);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.manage-done__rating {
+  margin-top: 8px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--c-surface);
+}
+
+.manage-done__waiting {
+  margin: 0;
+  color: var(--c-text-soft);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 767px) {
+  .manage-panel__media {
+    height: 220px;
+  }
+
+  .manage-panel__body {
+    padding: 20px 18px 22px;
+  }
+
+  .manage-panel__facts,
+  .manage-form__photos.is-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Zona berbahaya: hapus laporan ---------- */
+.manage-danger {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 18px;
+  padding: 16px 18px;
+  border: 1.5px dashed rgb(194 65 12 / 0.35);
+  border-radius: 18px;
+  background: rgb(253 235 225 / 0.5);
+}
+
+.manage-danger__title {
+  margin: 0;
+  color: var(--c-danger);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.manage-danger__body {
+  max-width: 44ch;
+  margin: 2px 0 0;
+  color: var(--c-text-soft);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.manage-danger__btn.btn--outline {
+  border-color: rgb(194 65 12 / 0.45);
+  color: var(--c-danger);
+}
+
+.manage-danger__btn .btn__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.manage-danger__icon {
+  width: 17px;
+  height: 17px;
+}
+
+@media (hover: hover) {
+  .manage-danger__btn.btn--outline:hover:not(:disabled) {
+    border-color: var(--c-danger);
+    background: var(--c-danger);
+    color: var(--c-white);
+  }
+}

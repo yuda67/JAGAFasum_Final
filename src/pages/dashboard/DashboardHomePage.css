@@ -1,0 +1,542 @@
+/*
+ * Beranda dashboard — diukur dari desain 1440px (area konten 1340px di kanan sidebar).
+ * .dhome__stage = 1340px, selalu di tengah, sehingga layar lebar tidak menyisakan
+ * ruang kosong di satu sisi. Konten mulai 80px dari kiri stage, lebar ±1083px.
+ */
+.dhome {
+  --stage-pad-left: clamp(20px, 5.556vw, 80px);
+  --stage-pad-right: clamp(20px, 12.29vw, 177px);
+  font-family: var(--font-sans);
+}
+
+.dhome__stage {
+  position: relative;
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 var(--stage-pad-right) 0 var(--stage-pad-left);
+}
+
+/* ---------- Bagian atas (putih) ---------- */
+.dhome__hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--c-white);
+}
+
+.dhome__hero > .dhome__stage {
+  min-height: 797px;
+  padding-bottom: 51px;
+}
+
+.dhome__stripes {
+  position: absolute;
+  top: 0;
+  left: 56.94%;
+  width: 38.88%;
+  height: 794px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--c-stripe) 0 70px,
+    transparent 70px 104.5px
+  );
+  animation: dhome-stripes 0.9s var(--ease-out) 0.1s both;
+  transform-origin: right;
+}
+
+.dhome__bar {
+  position: absolute;
+  width: 36px;
+  border-radius: 2px;
+  background: var(--c-yellow-bar);
+  transform: rotate(41deg);
+  animation: dhome-bar 0.8s var(--ease-out) both;
+}
+
+.dhome__bar--1 {
+  top: -50px;
+  left: 48.2%;
+  height: 150px;
+  animation-delay: 0.15s;
+}
+
+.dhome__bar--2 {
+  top: 144px;
+  left: 35.4%;
+  height: 145px;
+  animation-delay: 0.25s;
+}
+
+.dhome__bar--3 {
+  top: 355px;
+  left: 21%;
+  height: 130px;
+  animation-delay: 0.35s;
+}
+
+.dhome__bar--4 {
+  top: 690px;
+  left: 2.7%;
+  height: 140px;
+  animation-delay: 0.45s;
+}
+
+.dhome__inner {
+  position: relative;
+  z-index: 1;
+  padding-top: 139px;
+}
+
+.dhome__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  border-radius: 12px;
+  text-decoration: none;
+  animation: fade-up 0.6s var(--ease-out) both;
+}
+
+.dhome__logo {
+  width: 78px;
+}
+
+.dhome__wordmark {
+  color: var(--c-nav-btn);
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.dhome__cta-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -2px;
+}
+
+/* Tombol "Create a report" 256×56, hijau tua */
+.dhome__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 56px;
+  padding: 0 24px 0 18px;
+  border-radius: var(--radius-full);
+  background: var(--c-cta-dark);
+  color: #eaf6e2;
+  font: 400 1.5rem/1 var(--font-auth);
+  text-decoration: none;
+  white-space: nowrap;
+  animation: fade-up 0.6s var(--ease-out) 0.08s both;
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out);
+}
+
+.dhome__cta-icon {
+  width: 30px;
+  height: 30px;
+  stroke-width: 1.4;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.dhome__cta:focus-visible {
+  outline-color: var(--c-link);
+}
+
+@media (hover: hover) {
+  .dhome__cta:hover {
+    background: #237d05;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 28px -14px rgb(20 80 5 / 0.85);
+  }
+
+  .dhome__cta:hover .dhome__cta-icon {
+    transform: rotate(90deg);
+  }
+}
+
+/* Banner hijau 1079×117 */
+.dhome__banner {
+  display: flex;
+  align-items: center;
+  min-height: 117px;
+  margin: 25px 0 0;
+  padding: 18px 33px;
+  border-radius: 24px;
+  background: var(--c-btn);
+  color: var(--c-white);
+  font: 600 1.5rem/1.55 var(--font-auth);
+  box-shadow: 0 6px 10px rgb(0 0 0 / 0.25);
+  animation: fade-up 0.6s var(--ease-out) 0.12s both;
+}
+
+.dhome__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 27px;
+  margin: 38px 0 0;
+  padding: 0 0 0 4px;
+  list-style: none;
+}
+
+.dhome__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 31px;
+  margin-top: 86px;
+  padding-left: 40px;
+  animation: fade-up 0.6s var(--ease-out) 0.35s both;
+}
+
+/* ---------- Daftar kartu (latar krem pucat) ---------- */
+.dhome__list {
+  min-height: 600px;
+  background: var(--c-dash-bg);
+}
+
+.dhome__list > .dhome__stage {
+  padding-top: 98px;
+  padding-bottom: 96px;
+}
+
+.dhome__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 343px));
+  gap: 47px 28px;
+  margin: 0;
+  padding: 0 0 0 8px;
+  list-style: none;
+}
+
+.dhome__grid > li {
+  min-height: 450px;
+  animation: fade-up 0.55s var(--ease-out) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+
+.dhome__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1083px;
+  padding: 56px 24px;
+  border: 2px dashed var(--c-line-cream-strong);
+  border-radius: 24px;
+  text-align: center;
+  animation: fade-up 0.45s var(--ease-out) both;
+}
+
+.dhome__empty-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: var(--c-lime-soft);
+  color: var(--c-forest-deep);
+}
+
+.dhome__empty-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.dhome__empty-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.dhome__empty-body {
+  margin: 6px 0 0;
+  color: var(--c-text-soft);
+  font-weight: 500;
+}
+
+.dhome__empty-btn {
+  margin-top: 18px;
+  height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--c-btn);
+  color: var(--c-white);
+  font: 600 1rem/1 var(--font-sans);
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.dhome__empty-btn:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes dhome-bar {
+  from {
+    opacity: 0;
+    translate: -40px 40px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes dhome-stripes {
+  from {
+    opacity: 0;
+    transform: scaleX(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Laptop kecil / tablet landscape ---------- */
+@media (max-width: 1199px) {
+  .dhome {
+    --stage-pad-right: clamp(20px, 4vw, 48px);
+    --stage-pad-left: clamp(20px, 4vw, 48px);
+  }
+
+  .dhome__hero > .dhome__stage {
+    min-height: 0;
+  }
+
+  .dhome__inner {
+    padding-top: 64px;
+  }
+
+  .dhome__banner {
+    min-height: 0;
+    font-size: 1.25rem;
+  }
+
+  .dhome__stats {
+    gap: 18px;
+    padding: 0;
+  }
+
+  .dhome__toolbar {
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 56px;
+    padding-left: 0;
+  }
+
+  .dhome__grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    padding: 0;
+  }
+
+  .dhome__list > .dhome__stage {
+    padding-top: 64px;
+  }
+}
+
+/* ---------- HP ---------- */
+@media (max-width: 767px) {
+  .dhome {
+    --stage-pad-right: 16px;
+    --stage-pad-left: 16px;
+  }
+
+  .dhome__hero > .dhome__stage {
+    padding-bottom: 28px;
+  }
+
+  .dhome__stripes {
+    left: 62%;
+    width: 38%;
+    height: 100%;
+    opacity: 0.7;
+  }
+
+  .dhome__bar {
+    width: 22px;
+  }
+
+  .dhome__bar--1 {
+    left: 70%;
+  }
+
+  .dhome__bar--2,
+  .dhome__bar--3 {
+    display: none;
+  }
+
+  .dhome__inner {
+    padding-top: 28px;
+  }
+
+  .dhome__brand {
+    gap: 12px;
+  }
+
+  .dhome__logo {
+    width: 48px;
+  }
+
+  .dhome__wordmark {
+    font-size: 1.75rem;
+  }
+
+  .dhome__cta-row {
+    margin-top: 20px;
+  }
+
+  .dhome__cta {
+    width: 100%;
+    justify-content: center;
+    height: 52px;
+    font-size: 1.125rem;
+  }
+
+  .dhome__banner {
+    margin-top: 16px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    font-size: 1rem;
+  }
+
+  .dhome__stats {
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .dhome__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .dhome__toolbar .report-filter {
+    justify-content: space-between;
+  }
+
+  .dhome__list {
+    min-height: 0;
+  }
+
+  .dhome__list > .dhome__stage {
+    padding-top: 28px;
+    padding-bottom: 32px;
+  }
+
+  .dhome__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .dhome__grid > li {
+    min-height: 0;
+  }
+}
+
+/* ---------- Mode admin ---------- */
+.dhome__cta--admin {
+  background: var(--c-forest-deep);
+}
+
+/* Peringatan laporan duplikat yang wajib dicek */
+.dhome__alert {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 14px 18px 14px 14px;
+  border: 1.5px solid rgb(164 78 53 / 0.25);
+  border-radius: 20px;
+  background: var(--c-status-pending-bg);
+  color: #6e2c19;
+  text-decoration: none;
+  animation: fade-up 0.6s var(--ease-out) 0.2s both;
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.dhome__alert-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--c-status-pending);
+  color: var(--c-white);
+  animation: priority-pulse 2.4s var(--ease-out) infinite;
+}
+
+.dhome__alert-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.dhome__alert-text {
+  display: grid;
+  gap: 2px;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.dhome__alert-text strong {
+  font-size: 1.0625rem;
+}
+
+.dhome__alert-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 18px;
+  border-radius: var(--radius-full);
+  background: var(--c-status-pending);
+  color: var(--c-white);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dhome__alert-cta svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.dhome__alert:focus-visible {
+  outline: 2px solid var(--c-status-pending);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .dhome__alert:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px -18px rgb(120 40 20 / 0.7);
+  }
+
+  .dhome__alert:hover .dhome__alert-cta svg {
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 767px) {
+  .dhome__alert {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
+  .dhome__alert-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .dhome__alert-cta {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}

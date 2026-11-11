@@ -1,0 +1,20 @@
+.home {
+  /* flow-root menahan margin-top hero agar tidak "bocor" ke body */
+  display: flow-root;
+  overflow-x: clip;
+}
+
+/* Section hijau berisi galeri, alur pelaporan, dan kategori */
+.facilities {
+  position: relative;
+  z-index: 1;
+  padding: clamp(40px, 5.069vw, 73px) 0 clamp(28px, 2.292vw, 33px);
+  background: var(--c-forest);
+  box-shadow: var(--shadow-section-edge);
+}
+
+@media (max-width: 767px) {
+  .facilities {
+    padding-bottom: 48px;
+  }
+}

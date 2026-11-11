@@ -1,0 +1,152 @@
+/* Ukuran persis desain: panel 459×562, krem #fdebbb, pintu hijau tua. */
+.modal__panel.logout-dialog {
+  max-width: 459px;
+  min-height: min(562px, calc(100dvh - 40px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 40px 56px;
+  border-radius: 24px;
+  background: #fdebbb;
+  font-family: var(--font-sans);
+  text-align: center;
+}
+
+.logout-dialog__door {
+  --door-cutout: #fdebbb;
+  width: 130px;
+  height: 148px;
+  overflow: visible;
+  color: #1d5a0a;
+}
+
+/* Daun pintu berayun terbuka saat pop-up muncul, lalu menutup saat keluar */
+.logout-dialog__door .door__leaf,
+.logout-dialog__door .door__knob {
+  transform-box: view-box;
+  transform-origin: 18px 72px;
+  animation: door-open 0.9s var(--ease-spring) 0.18s both;
+}
+
+.logout-dialog.is-leaving .door__leaf,
+.logout-dialog.is-leaving .door__knob {
+  animation: door-close 0.45s var(--ease-in-out) both;
+}
+
+.logout-dialog__title {
+  display: flex;
+  flex-direction: column;
+  margin: 36px 0 0;
+  color: #1e6b0c;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.36;
+}
+
+.logout-dialog__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  width: 100%;
+  margin-top: 22px;
+}
+
+.logout-dialog__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 218px;
+  max-width: 100%;
+  height: 49px;
+  border-radius: var(--radius-full);
+  font: 700 1.375rem/1 var(--font-sans);
+  transition:
+    transform 0.35s var(--ease-spring),
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+}
+
+.logout-dialog__btn:focus-visible {
+  outline-color: #1e6b0c;
+}
+
+.logout-dialog__btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.logout-dialog__btn--cancel {
+  border: 0;
+  background: var(--c-btn);
+  color: var(--c-white);
+}
+
+.logout-dialog__btn--confirm {
+  border: 1px solid #a9e494;
+  background: var(--c-dash-bg);
+  color: var(--c-btn);
+}
+
+.logout-dialog__btn:disabled {
+  cursor: progress;
+}
+
+@media (hover: hover) {
+  .logout-dialog__btn--cancel:hover:not(:disabled) {
+    background: var(--c-btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px -14px rgb(40 110 20 / 0.8);
+  }
+
+  .logout-dialog__btn--confirm:hover:not(:disabled) {
+    border-color: var(--c-btn);
+    background: var(--c-white);
+    transform: translateY(-2px);
+  }
+}
+
+.logout-dialog__spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Ayunan pintu disimulasikan dengan scaleX + skewY dari engsel kiri */
+@keyframes door-open {
+  from {
+    transform: scaleX(0.5) skewY(-9deg);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes door-close {
+  to {
+    transform: scaleX(0.5) skewY(-9deg);
+  }
+}
+
+@media (max-width: 479px) {
+  .modal__panel.logout-dialog {
+    min-height: 0;
+    padding: 40px 24px 44px;
+  }
+
+  .logout-dialog__door {
+    width: 104px;
+    height: 118px;
+  }
+
+  .logout-dialog__title {
+    margin-top: 26px;
+    font-size: 1.25rem;
+  }
+}

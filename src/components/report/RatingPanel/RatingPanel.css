@@ -1,0 +1,138 @@
+.rating-panel {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border: 1.5px solid var(--c-line-cream);
+  border-radius: 18px;
+  background: linear-gradient(160deg, #fffaf0, var(--c-surface) 60%);
+  animation: fade-up 0.45s var(--ease-out) both;
+}
+
+.rating-panel--form {
+  border-color: var(--c-line-cream-strong);
+  box-shadow: 0 14px 30px -24px rgb(120 80 0 / 0.6);
+}
+
+.rating-panel__title {
+  margin: 0;
+  color: var(--c-ink);
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.rating-panel__lead {
+  margin: -4px 0 0;
+  color: var(--c-text-soft);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.rating-panel__stars {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 44px;
+}
+
+.rating-panel__score {
+  color: #8a6400;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.rating-panel__label {
+  color: var(--c-gray-800);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.rating-panel__textarea {
+  width: 100%;
+  min-height: 84px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--c-line-cream-strong);
+  border-radius: 14px;
+  background: var(--c-surface);
+  color: var(--c-ink);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  resize: vertical;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.rating-panel__textarea:focus {
+  border-color: var(--c-btn);
+  outline: none;
+  box-shadow: 0 0 0 4px rgb(79 163 52 / 0.16);
+}
+
+.rating-panel__error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--c-error);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.rating-panel__error svg {
+  width: 18px;
+  height: 18px;
+}
+
+.rating-panel .btn {
+  justify-self: start;
+}
+
+.rating-panel__waiting {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--c-dash-bg);
+  color: var(--c-text-soft);
+  font-size: 0.875rem;
+}
+
+/* Ringkasan rating */
+.rating-summary {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.rating-summary__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rating-summary__label {
+  color: #8a6400;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.rating-summary__comment {
+  margin: 0;
+  color: var(--c-ink);
+  font-size: 0.9375rem;
+  font-style: italic;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.rating-summary__by {
+  color: var(--c-gray-600);
+  font-size: 0.8125rem;
+}
+
+.rating-summary--compact {
+  gap: 6px;
+}
+
+.rating-summary--compact .rating-summary__comment {
+  font-size: 0.875rem;
+}

@@ -1,0 +1,103 @@
+/* Galeri foto fasilitas: marquee tanpa ujung, berhenti saat di-hover. */
+.gallery {
+  --card-w: clamp(280px, 33.889vw, 488px);
+  --card-h: calc(var(--card-w) * 335 / 488);
+  --gap: clamp(20px, 2.847vw, 41px);
+  overflow: hidden;
+  /* ruang ekstra untuk efek naik saat hover & bayangan kartu */
+  margin: -12px 0 -20px;
+  padding: 12px 0 20px;
+}
+
+.gallery__track {
+  display: flex;
+  width: max-content;
+  margin: 0 0 0 calc(var(--gutter) * -1);
+  padding: 0;
+  list-style: none;
+  animation: marquee 55s linear infinite;
+}
+
+.gallery:hover .gallery__track,
+.gallery:focus-within .gallery__track {
+  animation-play-state: paused;
+}
+
+/* Jarak memakai margin (bukan gap) agar -50% tepat satu set dan loop mulus */
+.gallery__item {
+  flex: none;
+  margin-right: var(--gap);
+}
+
+.gallery__card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: var(--card-w);
+  height: var(--card-h);
+  margin: 0;
+  border-radius: var(--radius-photo);
+  box-shadow: var(--shadow-photo);
+  transition:
+    transform 0.6s var(--ease-out),
+    box-shadow 0.6s var(--ease-out);
+}
+
+.gallery__image {
+  position: absolute;
+  inset: 0;
+}
+
+.gallery__image .image-slot__img {
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.9s var(--ease-out);
+}
+
+.gallery__caption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 52px 28px 22px;
+  background: linear-gradient(180deg, transparent, rgb(20 45 12 / 0.8));
+  color: var(--c-cream);
+  font: 600 1.125rem/1.3 var(--font-sans);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .gallery__card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 18px 26px -8px rgb(0 0 0 / 0.45);
+  }
+
+  .gallery__card:hover .image-slot__img {
+    transform: scale(1.06);
+  }
+
+  .gallery__card:hover .gallery__caption {
+    transform: none;
+  }
+}
+
+/* Tanpa animasi: baris bisa di-scroll manual, salinan disembunyikan */
+@media (prefers-reduced-motion: reduce) {
+  .gallery {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .gallery__track {
+    margin-left: 0;
+    padding-inline: var(--gutter);
+    animation: none;
+  }
+
+  .gallery__item {
+    scroll-snap-align: center;
+  }
+
+  .gallery__item[aria-hidden='true'] {
+    display: none;
+  }
+}

@@ -1,0 +1,197 @@
+/* Kategori: lingkaran krem dengan ikon putih + animasi khas saat hover. */
+.categories {
+  --circle: clamp(132px, 16.042vw, 231px);
+  display: flex;
+  justify-content: center;
+  gap: clamp(24px, 6.944vw, 100px);
+  margin: clamp(48px, 5.347vw, 77px) auto 0;
+  padding: 0 var(--gutter);
+  list-style: none;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--circle);
+}
+
+.category__circle {
+  display: grid;
+  place-items: center;
+  width: var(--circle);
+  height: var(--circle);
+  border-radius: 50%;
+  background: var(--c-circle);
+  transition:
+    transform 0.55s var(--ease-spring),
+    box-shadow 0.55s var(--ease-out);
+}
+
+.category__icon {
+  width: 74%;
+  height: 74%;
+  overflow: visible;
+  color: var(--c-white);
+}
+
+.category__label {
+  margin-top: clamp(12px, 1.528vw, 22px);
+  color: var(--c-white);
+  font-size: var(--fs-category);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .category:hover .category__circle {
+    transform: scale(1.06);
+    box-shadow:
+      0 0 0 12px rgb(255 229 174 / 0.16),
+      0 18px 34px -14px rgb(0 0 0 / 0.4);
+  }
+}
+
+/* ---------- Animasi ikon ---------- */
+.icon-bus__body,
+.icon-ped__walker,
+.icon-train__body,
+.icon-train__sleepers {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.icon-bus__light {
+  fill: var(--c-circle);
+  transition: fill 0.3s var(--ease-out);
+}
+
+.icon-traffic__lamp {
+  fill: var(--c-white);
+}
+
+.category:hover .icon-bus__body {
+  animation: bus-bounce 0.7s var(--ease-in-out) infinite;
+}
+
+.category:hover .icon-bus__light {
+  fill: #fff4b8;
+}
+
+.category:hover .icon-traffic__lamp--red {
+  animation: lamp-red 2.1s steps(1, end) infinite;
+}
+
+.category:hover .icon-traffic__lamp--yellow {
+  animation: lamp-yellow 2.1s steps(1, end) infinite;
+}
+
+.category:hover .icon-traffic__lamp--green {
+  animation: lamp-green 2.1s steps(1, end) infinite;
+}
+
+.category:hover .icon-ped__walker {
+  animation: walker 1.1s var(--ease-in-out) infinite;
+}
+
+.category:hover .icon-train__body {
+  animation: train-rumble 0.24s linear infinite;
+}
+
+.category:hover .icon-train__sleepers {
+  animation: sleepers-move 0.45s linear infinite;
+}
+
+@keyframes bus-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+  30% {
+    transform: translateY(-4px) scaleY(1.01);
+  }
+  60% {
+    transform: translateY(0) scaleY(0.985);
+  }
+}
+
+@keyframes lamp-red {
+  0% {
+    fill: #ff5a4f;
+  }
+  33.333% {
+    fill: var(--c-white);
+  }
+}
+
+@keyframes lamp-yellow {
+  0% {
+    fill: var(--c-white);
+  }
+  33.333% {
+    fill: #ffc83d;
+  }
+  66.666% {
+    fill: var(--c-white);
+  }
+}
+
+@keyframes lamp-green {
+  0% {
+    fill: var(--c-white);
+  }
+  66.666% {
+    fill: #4fcf4a;
+  }
+}
+
+@keyframes walker {
+  0%,
+  100% {
+    transform: translateX(5px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(0) translateY(-2px) rotate(-2deg);
+  }
+  50% {
+    transform: translateX(-5px) rotate(0deg);
+  }
+  75% {
+    transform: translateX(0) translateY(-2px) rotate(2deg);
+  }
+}
+
+@keyframes train-rumble {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes sleepers-move {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(7.5px);
+  }
+}
+
+/* ---------- HP: grid 2 × 2 ---------- */
+@media (max-width: 767px) {
+  .categories {
+    --circle: 132px;
+    display: grid;
+    grid-template-columns: repeat(2, var(--circle));
+    gap: 32px 28px;
+  }
+
+  .category__label {
+    font-size: 1.25rem;
+  }
+}

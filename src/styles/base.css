@@ -1,0 +1,41 @@
+/* Gaya dasar elemen global (di layer base agar mudah ditimpa komponen). */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--c-moss);
+    color: var(--c-ink);
+    font-family: var(--font-sans);
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--c-lime);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--c-lime);
+    color: var(--c-forest-deep);
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  img,
+  svg {
+    -webkit-user-drag: none;
+  }
+}

@@ -1,0 +1,88 @@
+/*
+ * Section "Tentang". Bagian bawahnya memanjang 1 × radius footer ke bawah
+ * footer, sehingga sudut bulat footer memperlihatkan latar & gedung.
+ */
+.about {
+  position: relative;
+  min-height: calc(clamp(520px, 45.278vw, 652px) + var(--radius-section));
+  padding-bottom: var(--radius-section);
+  background: var(--c-paper);
+}
+
+.about__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: clamp(40px, 4.514vw, 65px) var(--gutter) 0 clamp(20px, 4.236vw, 61px);
+}
+
+.about__title {
+  margin: 0;
+  color: var(--c-amber);
+  font-size: var(--fs-display);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.about__body {
+  padding-left: clamp(0px, 2.292vw, 33px);
+}
+
+.about__subtitle {
+  max-width: 12.5em;
+  margin: clamp(24px, 3.264vw, 47px) 0 0;
+  color: var(--c-gray-600);
+  font-size: var(--fs-title);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.about__text {
+  max-width: 23.7em;
+  margin: clamp(16px, 1.944vw, 28px) 0 0;
+  color: var(--c-gray-800);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.about__skyline {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: clamp(420px, 51.389vw, 740px);
+}
+
+/* ---------- Tablet & HP: teks di atas, skyline di bawahnya ---------- */
+@media (max-width: 1023px) {
+  .about {
+    min-height: 0;
+  }
+
+  .about__inner {
+    padding-right: var(--gutter);
+    padding-left: var(--gutter);
+  }
+
+  .about__body {
+    padding-left: 0;
+  }
+
+  .about__subtitle,
+  .about__text {
+    max-width: 34em;
+  }
+
+  .about__skyline {
+    position: relative;
+    width: min(620px, 100%);
+    margin: 32px 0 0 auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .about__title {
+    font-size: 2.5rem;
+  }
+}

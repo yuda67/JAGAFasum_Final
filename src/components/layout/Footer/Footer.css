@@ -1,0 +1,131 @@
+.footer {
+  --icon-cutout: var(--c-moss);
+  position: relative;
+  z-index: 2;
+  margin-top: calc(var(--radius-section) * -1);
+  border-radius: var(--radius-section) var(--radius-section) 0 0;
+  background: var(--c-moss);
+  color: var(--c-cream-muted);
+}
+
+.footer__inner {
+  max-width: var(--container);
+  min-height: clamp(220px, 18.819vw, 271px);
+  margin: 0 auto;
+  padding: clamp(32px, 3.819vw, 55px) var(--gutter) clamp(28px, 2.917vw, 42px) clamp(20px, 3.611vw, 52px);
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.875vw, 27px);
+}
+
+.footer__logo {
+  width: clamp(56px, 5.486vw, 79px);
+}
+
+.footer__name {
+  color: var(--c-lime);
+  font-size: var(--fs-title);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.footer__heading {
+  margin: 4px 0 0;
+  color: var(--c-cream);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.footer__contacts {
+  display: grid;
+  /* kolom alamat selebar isinya; dua kolom pertama berbagi sisa ruang 501 : 478 sesuai desain */
+  grid-template-columns: minmax(0, 501fr) minmax(0, 478fr) max-content;
+  align-items: center;
+  margin: clamp(10px, 0.868vw, 12.5px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__contacts > li {
+  display: flex;
+}
+
+.footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(10px, 0.972vw, 14px);
+  border-radius: 8px;
+  color: var(--c-cream-muted);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration-color: transparent;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition:
+    color var(--dur-base) var(--ease-out),
+    text-decoration-color var(--dur-base) var(--ease-out);
+}
+
+.footer__link--address {
+  gap: clamp(12px, 1.389vw, 20px);
+  line-height: 1.05;
+}
+
+.footer__line {
+  display: block;
+}
+
+.footer__icon {
+  flex: none;
+  height: auto;
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.footer__icon--mail {
+  width: clamp(36px, 3.611vw, 52px);
+}
+
+.footer__icon--phone {
+  width: clamp(24px, 2.292vw, 33px);
+}
+
+.footer__icon--pin {
+  width: clamp(26px, 2.431vw, 35px);
+}
+
+@media (hover: hover) {
+  .footer__link:hover {
+    color: #fff6d8;
+    text-decoration-color: currentColor;
+  }
+
+  .footer__link:hover .footer__icon {
+    transform: translateY(-2px);
+  }
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1023px) {
+  .footer__contacts {
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    gap: 20px 56px;
+  }
+}
+
+/* ---------- HP ---------- */
+@media (max-width: 767px) {
+  .footer__inner {
+    padding-right: 20px;
+  }
+
+  .footer__contacts {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}

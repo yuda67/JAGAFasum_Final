@@ -1,0 +1,128 @@
+/* Kartu ringkasan 342×143 (desain): putih, bayangan tebal, teks Poppins. */
+.dash-stat-item {
+  animation: fade-up 0.6s var(--ease-out) both;
+  animation-delay: calc(var(--i) * 90ms + 150ms);
+}
+
+.dash-stat {
+  --tone: var(--c-status-pending);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 143px;
+  padding: 0 24px 6px 33px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background: var(--c-surface);
+  color: var(--c-ink);
+  font-family: var(--font-auth);
+  text-align: left;
+  box-shadow: 0 28px 30px -14px rgb(0 0 0 / 0.38);
+  transition:
+    transform 0.45s var(--ease-spring),
+    box-shadow var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+
+.dash-stat--progress {
+  --tone: var(--c-status-progress);
+}
+
+.dash-stat--done {
+  --tone: var(--c-status-done);
+}
+
+.dash-stat__value {
+  padding-left: 30px;
+  font-size: 2.125rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.dash-stat__label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.dash-stat__dot {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--tone);
+  transition: transform 0.45s var(--ease-spring);
+}
+
+.dash-stat.is-active {
+  border-color: var(--tone);
+}
+
+.dash-stat.is-active .dash-stat__dot {
+  transform: scale(1.35);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--tone) 22%, transparent);
+}
+
+.dash-stat:focus-visible {
+  outline-color: var(--c-link);
+}
+
+@media (hover: hover) {
+  .dash-stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 34px 36px -16px rgb(0 0 0 / 0.42);
+  }
+
+  .dash-stat:hover .dash-stat__dot {
+    transform: scale(1.3);
+  }
+}
+
+@media (max-width: 1199px) {
+  .dash-stat {
+    height: 120px;
+    padding-left: 24px;
+  }
+
+  .dash-stat__value {
+    font-size: 1.875rem;
+  }
+
+  .dash-stat__label {
+    gap: 12px;
+    font-size: 1.125rem;
+  }
+
+  .dash-stat__value {
+    padding-left: 26px;
+  }
+}
+
+@media (max-width: 767px) {
+  .dash-stat {
+    height: auto;
+    padding: 16px 16px 18px;
+    box-shadow: 0 16px 22px -14px rgb(0 0 0 / 0.38);
+  }
+
+  .dash-stat__value {
+    padding-left: 0;
+    font-size: 1.75rem;
+  }
+
+  .dash-stat__label {
+    gap: 8px;
+    font-size: 0.875rem;
+  }
+
+  .dash-stat__dot {
+    width: 10px;
+    height: 10px;
+  }
+}

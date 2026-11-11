@@ -1,0 +1,335 @@
+/* Sidebar dashboard: lebar 100px di desain 1440px, tombol 72×68 hijau terang. */
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: var(--z-sidebar);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--sidebar-w);
+  padding: 32px 0 24px;
+  background: var(--c-sidebar);
+  box-shadow: 6px 0 24px -18px rgb(10 40 5 / 0.6);
+}
+
+.sidebar__brand {
+  display: block;
+  width: clamp(46px, 3.819vw, 55px);
+  border-radius: 10px;
+}
+
+.sidebar__nav {
+  margin-top: 50px;
+}
+
+.sidebar__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar__item {
+  animation: sidebar-item-in 0.55s var(--ease-spring) both;
+  animation-delay: calc(var(--i) * 60ms + 120ms);
+}
+
+.sidebar__btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(62px, 5vw, 72px);
+  height: clamp(60px, 4.722vw, 68px);
+  border: 0;
+  border-radius: 16px;
+  background: var(--c-nav-btn);
+  color: var(--c-nav-icon);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.35s var(--ease-spring),
+    background-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+}
+
+.sidebar__btn:active {
+  transform: scale(0.94);
+}
+
+.sidebar__icon {
+  width: 30px;
+  height: 30px;
+  stroke-width: 1.35;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+/* Indikator menu aktif: tombol lime + garis di tepi kiri sidebar */
+.sidebar__btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc((var(--sidebar-w) - 100%) / -2);
+  width: 5px;
+  height: 0;
+  border-radius: 0 6px 6px 0;
+  background: var(--c-lime);
+  transform: translateY(-50%);
+  transition: height 0.4s var(--ease-spring);
+}
+
+.sidebar__btn.active {
+  background: var(--c-lime);
+  color: var(--c-forest-deep);
+  box-shadow:
+    0 0 0 4px rgb(192 255 114 / 0.22),
+    0 12px 22px -12px rgb(10 40 5 / 0.7);
+}
+
+.sidebar__btn.active::before {
+  height: 40px;
+}
+
+.sidebar__btn:focus-visible {
+  outline-color: var(--c-cream);
+}
+
+/* Tooltip nama menu */
+.sidebar__label {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 16px);
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--c-forest-deep);
+  color: var(--c-cream);
+  font: 600 0.9375rem/1 var(--font-sans);
+  white-space: nowrap;
+  box-shadow: 0 10px 24px -10px rgb(10 30 5 / 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-8px, -50%, 0);
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.sidebar__label::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: inherit;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.sidebar__btn:focus-visible .sidebar__label {
+  opacity: 1;
+  transform: translate3d(0, -50%, 0);
+}
+
+@media (hover: hover) {
+  .sidebar__btn:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 12px 22px -12px rgb(10 40 5 / 0.75);
+  }
+
+  .sidebar__btn:not(.active):hover {
+    background: var(--c-nav-btn-hover);
+  }
+
+  .sidebar__btn:hover .sidebar__icon {
+    transform: scale(1.1) rotate(-4deg);
+  }
+
+  .sidebar__btn--logout:hover .sidebar__icon {
+    transform: translateX(3px);
+  }
+
+  .sidebar__btn:hover .sidebar__label {
+    opacity: 1;
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes sidebar-item-in {
+  from {
+    opacity: 0;
+    transform: translate3d(-18px, 0, 0) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Layar pendek: rapatkan jarak ---------- */
+@media (max-height: 620px) and (min-width: 768px) {
+  .sidebar {
+    padding-top: 20px;
+  }
+
+  .sidebar__nav {
+    margin-top: 28px;
+  }
+
+  .sidebar__list {
+    gap: 10px;
+  }
+
+  .sidebar__btn {
+    height: 54px;
+  }
+}
+
+/* ---------- HP: berubah menjadi bar navigasi bawah ---------- */
+@media (max-width: 767px) {
+  .sidebar {
+    inset: auto 0 0;
+    width: auto;
+    height: auto;
+    padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+    border-radius: 22px 22px 0 0;
+    box-shadow: 0 -10px 30px -18px rgb(10 40 5 / 0.7);
+  }
+
+  .sidebar__brand {
+    display: none;
+  }
+
+  .sidebar__nav {
+    width: 100%;
+    margin: 0;
+  }
+
+  .sidebar__list {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .sidebar__item {
+    flex: 1 1 0;
+    min-width: 0;
+    animation-name: fade-up;
+  }
+
+  .sidebar__btn {
+    width: 100%;
+    height: 58px;
+    gap: 2px;
+    align-content: center;
+    border-radius: 14px;
+  }
+
+  .sidebar__btn::before {
+    display: none;
+  }
+
+  .sidebar__icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Label tampil kecil di bawah ikon */
+  .sidebar__label {
+    position: static;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    color: inherit;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 0.6875rem;
+    text-overflow: ellipsis;
+    opacity: 1;
+    transform: none;
+  }
+
+  .sidebar__label::before {
+    display: none;
+  }
+
+  .sidebar__btn:hover .sidebar__label,
+  .sidebar__btn:focus-visible .sidebar__label {
+    transform: none;
+  }
+}
+
+@media (max-width: 419px) {
+  .sidebar__label {
+    font-size: 0.625rem;
+  }
+}
+
+/* ---------- Penanda mode admin & badge jumlah ---------- */
+.sidebar__role {
+  margin-top: 12px;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  background: var(--c-lime);
+  color: var(--c-forest-deep);
+  font: 800 0.625rem/1 var(--font-sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: fade-in 0.5s var(--ease-out) 0.2s both;
+}
+
+.sidebar__role + .sidebar__nav {
+  margin-top: 30px;
+}
+
+.sidebar__badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border: 2px solid var(--c-sidebar);
+  border-radius: var(--radius-full);
+  background: var(--c-status-pending);
+  color: var(--c-white);
+  font: 700 0.6875rem/1 var(--font-sans);
+  animation: priority-badge-pop 0.5s var(--ease-spring) 0.5s both;
+}
+
+@keyframes priority-badge-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar__role {
+    display: none;
+  }
+
+  .sidebar__badge {
+    top: 2px;
+    right: 6px;
+  }
+}
+
+/* Label penuh untuk tooltip desktop, label ringkas untuk bar bawah HP */
+.sidebar__label-short {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .sidebar__label-full {
+    display: none;
+  }
+
+  .sidebar__label-short {
+    display: inline;
+  }
+}

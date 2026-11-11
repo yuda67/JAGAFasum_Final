@@ -1,0 +1,88 @@
+.status-timeline {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.status-timeline__item {
+  --tone: var(--c-status-pending);
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 10px;
+  padding-bottom: 16px;
+  animation: fade-up 0.4s var(--ease-out) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+
+.status-timeline__item--progress {
+  --tone: var(--c-status-progress);
+}
+
+.status-timeline__item--done {
+  --tone: var(--c-status-done);
+}
+
+/* Garis penghubung antar titik */
+.status-timeline__item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 0;
+  left: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: #e7e7df;
+}
+
+.status-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.status-timeline__dot {
+  width: 14px;
+  height: 14px;
+  margin: 3px 0 0 4px;
+  border: 3px solid var(--c-surface);
+  border-radius: 50%;
+  background: var(--tone);
+  box-shadow: 0 0 0 2px var(--tone);
+}
+
+.status-timeline__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.status-timeline__head strong {
+  color: var(--c-ink);
+  font-weight: 700;
+}
+
+.status-timeline__head time {
+  color: var(--c-gray-600);
+  font-size: 0.8125rem;
+}
+
+.status-timeline__by {
+  margin: 2px 0 0;
+  color: var(--c-text-soft);
+  font-size: 0.8125rem;
+}
+
+.status-timeline__note {
+  margin: 6px 0 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--c-dash-bg);
+  color: var(--c-gray-800);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}

@@ -1,0 +1,81 @@
+.skyline {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.skyline__building {
+  opacity: 0;
+  transform: translate3d(0, 90px, 0);
+  transition:
+    opacity 0.9s var(--ease-out) calc(var(--i) * 130ms),
+    transform 1.2s var(--ease-out) calc(var(--i) * 130ms);
+}
+
+.skyline.is-visible .skyline__building {
+  opacity: 1;
+  transform: none;
+}
+
+.skyline__shape {
+  fill: var(--c-building);
+}
+
+.skyline__rim {
+  fill: var(--c-rim);
+}
+
+.skyline__stripe {
+  fill: var(--c-window-off);
+}
+
+.skyline__window {
+  fill: var(--window-color);
+}
+
+.skyline__window.is-warm {
+  --window-color: var(--c-window-warm);
+}
+
+.skyline__window.is-peach {
+  --window-color: var(--c-window-peach);
+}
+
+.skyline__window.is-mint {
+  --window-color: var(--c-window-mint);
+}
+
+.skyline__window.is-off {
+  --window-color: var(--c-window-off);
+}
+
+.skyline.is-visible .skyline__window.is-twinkle {
+  animation: window-twinkle var(--tw-duration, 8s) ease-in-out var(--tw-delay, 0s) infinite;
+}
+
+.skyline__beacon {
+  fill: var(--c-beacon);
+  animation: beacon-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes window-twinkle {
+  0%,
+  64%,
+  100% {
+    fill: var(--window-color);
+  }
+  72%,
+  90% {
+    fill: var(--c-window-off);
+  }
+}
+
+@keyframes beacon-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}

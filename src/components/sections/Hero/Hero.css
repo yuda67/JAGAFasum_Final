@@ -1,0 +1,172 @@
+/* Hero: kartu besar bersudut bulat di atas, foto kota + gradien hijau. */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  min-height: clamp(640px, 71.25vw, 1026px);
+  margin-top: clamp(12px, 5.139vw, 74px);
+  border-radius: var(--radius-section) var(--radius-section) 0 0;
+  background: var(--c-forest);
+  color: var(--c-cream);
+}
+
+.hero__media {
+  position: absolute;
+  /* diperpanjang ke atas supaya pergeseran parallax tidak pernah memperlihatkan celah */
+  inset: -120px 0 0;
+  z-index: -2;
+  transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.08);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__image .image-slot__img {
+  object-position: 50% 30%;
+}
+
+/* Petunjuk wadah foto hero (khusus development), di area kosong dasar hero */
+.hero__slot-hint {
+  position: absolute;
+  bottom: clamp(20px, 3.333vw, 48px);
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  max-width: calc(100% - 40px);
+  margin: 0;
+  padding: 10px 16px;
+  border: 1.5px dashed rgb(255 255 255 / 0.35);
+  border-radius: 14px;
+  background: rgb(0 0 0 / 0.12);
+  color: rgb(255 255 255 / 0.85);
+  font: 600 0.8125rem/1.45 var(--font-sans);
+  transform: translateX(-50%);
+}
+
+.hero__slot-hint strong {
+  color: var(--c-white);
+}
+
+.hero__slot-hint-icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+}
+
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgb(64 128 44 / 0.1) 0%,
+    rgb(64 128 44 / 0.12) 50%,
+    rgb(64 128 44 / 0.55) 72%,
+    rgb(64 128 44 / 0.92) 86%,
+    var(--c-forest) 94%
+  );
+}
+
+.hero__inner {
+  position: relative;
+  max-width: var(--container);
+  min-height: inherit;
+  margin: 0 auto;
+  padding: clamp(150px, 22.36vw, 322px) var(--gutter) 0;
+}
+
+.hero__copy {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__title {
+  max-width: 10em;
+  margin: 0;
+  font-size: var(--fs-display);
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 2px 18px rgb(20 40 10 / 0.22);
+  animation: fade-up 0.9s var(--ease-out) 0.15s both;
+}
+
+.hero__welcome {
+  margin: clamp(28px, 3.611vw, 52px) 0 0;
+  font-size: var(--fs-title);
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 2px 14px rgb(20 40 10 / 0.2);
+  animation: fade-up 0.9s var(--ease-out) 0.3s both;
+}
+
+.hero__accent {
+  color: var(--c-lime-bright);
+}
+
+.hero__lead {
+  max-width: 27.4em;
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 1px 12px rgb(20 40 10 / 0.22);
+  animation: fade-up 0.9s var(--ease-out) 0.4s both;
+}
+
+/* Wadah dua kartu statistik (542 × 402 di desain) */
+.hero__stats {
+  position: absolute;
+  top: clamp(240px, 23.958vw, 345px);
+  right: clamp(20px, 4.861vw, 70px);
+  width: min(542px, 37.639vw);
+  aspect-ratio: 542 / 402;
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1023px) {
+  .hero {
+    min-height: 0;
+  }
+
+  .hero__inner {
+    padding-top: clamp(150px, 24vw, 220px);
+    padding-bottom: clamp(120px, 18vw, 170px);
+  }
+
+  .hero__stats {
+    position: relative;
+    top: auto;
+    right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(28px, 5vw, 48px);
+    width: auto;
+    aspect-ratio: auto;
+    margin-top: clamp(48px, 8vw, 72px);
+  }
+}
+
+/* ---------- HP ---------- */
+@media (max-width: 767px) {
+  .hero__title {
+    font-size: 2.375rem;
+  }
+
+  .hero__welcome {
+    margin-top: 24px;
+  }
+
+  .hero__inner {
+    padding-top: 130px;
+    padding-bottom: 120px;
+  }
+}

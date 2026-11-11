@@ -1,0 +1,261 @@
+/*
+ * Kartu laporan — ukuran dari desain 1440px: lebar 343, foto 170px,
+ * badan putih menumpuk di bawah foto dengan sudut membulat 16px.
+ */
+.report-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 16px;
+  background: var(--c-surface);
+  box-shadow: 0 4px 5px rgb(0 0 0 / 0.22);
+  transition:
+    transform 0.45s var(--ease-spring),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+/* Seluruh kartu bisa diklik lewat tombol transparan di atasnya */
+.report-card__hit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+}
+
+.report-card__hit:focus-visible {
+  outline-color: var(--c-link);
+  outline-offset: 3px;
+}
+
+.report-card__media {
+  height: 170px;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  background: var(--c-dropzone);
+}
+
+.report-card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+
+.report-card__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: -14px;
+  padding: 22px 22px 22px;
+  border-radius: 16px;
+  background: var(--c-surface);
+}
+
+.report-card__title {
+  margin: 0;
+  overflow: hidden;
+  color: var(--c-ink);
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.report-card__location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 0;
+  color: var(--c-ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.report-card__pin {
+  flex: none;
+  width: 16px;
+  height: 22px;
+  transition: transform 0.45s var(--ease-spring);
+}
+
+.report-card__location span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.report-card__desc {
+  display: -webkit-box;
+  margin: 22px 0 0 4px;
+  overflow: hidden;
+  color: var(--c-ink);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.report-card__status {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin: auto 0 0;
+  padding: 22px 0 0 12px;
+  color: var(--c-ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+@media (hover: hover) {
+  .report-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 34px -16px rgb(30 60 15 / 0.45);
+  }
+
+  .report-card:hover .report-card__img {
+    transform: scale(1.07);
+  }
+
+  .report-card:hover .report-card__pin {
+    transform: translateY(-3px);
+  }
+}
+
+.report-card__delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.94);
+  color: var(--c-gray-800);
+  box-shadow: 0 6px 14px -8px rgb(0 0 0 / 0.5);
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform 0.35s var(--ease-spring),
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.report-card__delete svg {
+  width: 18px;
+  height: 18px;
+}
+
+.report-card:hover .report-card__delete,
+.report-card:focus-within .report-card__delete {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: none) {
+  .report-card__delete {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (hover: hover) {
+  .report-card__delete:hover {
+    background: var(--c-danger);
+    color: var(--c-white);
+  }
+}
+
+/* Sorotan untuk laporan yang baru saja dikirim */
+.report-card.is-highlighted {
+  animation: report-card-glow 2.4s var(--ease-out) 0.4s both;
+}
+
+@keyframes report-card-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgb(79 163 52 / 0.6);
+  }
+  40% {
+    box-shadow: 0 0 0 10px rgb(79 163 52 / 0.18);
+  }
+  100% {
+    box-shadow: 0 4px 5px rgb(0 0 0 / 0.22);
+  }
+}
+
+@media (max-width: 767px) {
+  .report-card__media {
+    height: 180px;
+  }
+
+  .report-card__title {
+    font-size: 1.5rem;
+  }
+
+  .report-card__status {
+    gap: 16px;
+    padding-left: 0;
+  }
+}
+
+/* Penanda di pojok kiri atas foto (prioritas duplikat / ajakan memberi rating) */
+.report-card__media {
+  position: relative;
+}
+
+.report-card__tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  display: flex;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.report-card__nudge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 10px 0 8px;
+  border-radius: var(--radius-full);
+  background: var(--c-amber);
+  color: #4a3400;
+  font: 700 0.75rem/1 var(--font-sans);
+  box-shadow: 0 6px 14px -8px rgb(0 0 0 / 0.5);
+}
+
+.report-card__nudge svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.report-card__compare {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: var(--radius-full);
+  background: rgb(192 255 114 / 0.95);
+  color: var(--c-forest-deep);
+  font: 700 0.6875rem/1 var(--font-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 14px -8px rgb(0 0 0 / 0.5);
+}

@@ -1,0 +1,71 @@
+.report-field__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.report-field__count {
+  margin-bottom: 10px;
+  color: var(--c-placeholder);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.report-field__count.is-near {
+  color: var(--c-status-pending);
+}
+
+/* Input persis desain: kapsul 58px, border krem 3px, placeholder abu 15px */
+.report-field__control,
+.report-input {
+  display: block;
+  width: 100%;
+  border: 3px solid var(--c-line-cream);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  font: 400 1rem/1.5 var(--font-sans);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.report-field__control::placeholder,
+.report-input::placeholder {
+  color: var(--c-placeholder);
+  font-size: 0.9375rem;
+}
+
+.report-field__control--line,
+.report-input {
+  height: 58px;
+  padding: 0 18px;
+  border-radius: var(--radius-field);
+}
+
+.report-field__control--area {
+  min-height: 157px;
+  padding: 16px 14px;
+  border-radius: 16px;
+  resize: vertical;
+}
+
+.report-field__control:hover,
+.report-input:hover {
+  border-color: var(--c-line-cream-strong);
+}
+
+.report-field__control:focus,
+.report-input:focus {
+  outline: none;
+  border-color: var(--c-btn);
+  box-shadow: 0 0 0 5px rgb(79 163 52 / 0.16);
+}
+
+.report-field.has-error .report-field__control,
+.report-input[aria-invalid="true"] {
+  border-color: rgb(198 40 40 / 0.6);
+  box-shadow: 0 0 0 4px rgb(198 40 40 / 0.08);
+}

@@ -1,0 +1,124 @@
+.auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: var(--c-paper);
+}
+
+.auth :focus-visible {
+  outline-color: var(--c-link);
+}
+
+/* Panel gambar kiri: tetap menempel saat form di-scroll */
+.auth__visual {
+  position: sticky;
+  top: 0;
+  isolation: isolate;
+  overflow: hidden;
+  height: 100vh;
+  height: 100svh;
+  background: #3a7040;
+}
+
+.auth__image {
+  position: absolute;
+  inset: 0;
+}
+
+/* Efek duotone hijau ala desain: foto grayscale × hijau + gradien terang/gelap */
+.auth__visual--photo .image-slot__img {
+  filter: grayscale(1) contrast(1.05) brightness(1.08);
+  transform-origin: 60% 40%;
+  animation: ken-burns 26s var(--ease-in-out) infinite alternate;
+}
+
+.auth__tint,
+.auth__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.auth__tint {
+  background: #4caf50;
+  mix-blend-mode: multiply;
+}
+
+.auth__glow {
+  background: linear-gradient(180deg, rgb(102 180 90 / 0.4) 0%, rgb(0 0 0 / 0) 45%, rgb(8 24 6 / 0.25) 100%);
+}
+
+.auth__logo {
+  position: absolute;
+  top: clamp(24px, 11.035vh, 113px);
+  left: clamp(20px, 6.25vw, 90px);
+  z-index: 1;
+  width: clamp(56px, 6.319vw, 91px);
+  border-radius: 12px;
+  transition: transform 0.45s var(--ease-spring);
+}
+
+.auth__logo:focus-visible {
+  outline-color: var(--c-lime);
+}
+
+@media (hover: hover) {
+  .auth__logo:hover {
+    transform: scale(1.05) rotate(-3deg);
+  }
+}
+
+/* Panel form kanan */
+.auth__panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 48px clamp(20px, 3.333vw, 48px);
+}
+
+.auth__panel-inner {
+  width: min(506px, 100%);
+  animation: auth-panel-in 0.5s var(--ease-out) both;
+}
+
+@keyframes auth-panel-in {
+  from {
+    opacity: 0;
+    transform: translate3d(28px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 1023px) {
+  .auth {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+/* ---------- HP: banner gambar di atas, form di bawah ---------- */
+@media (max-width: 767px) {
+  .auth {
+    display: block;
+  }
+
+  .auth__visual {
+    position: relative;
+    height: 200px;
+  }
+
+  .auth__logo {
+    top: 24px;
+    left: 20px;
+    width: 56px;
+  }
+
+  .auth__panel {
+    padding: 36px 20px 56px;
+  }
+}

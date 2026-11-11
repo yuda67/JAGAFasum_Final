@@ -1,0 +1,117 @@
+/* Gaya bersama form Login & Register (ukuran mengikuti desain 1440 × 1024). */
+.auth-form {
+  color: var(--c-ink);
+  font-family: var(--font-auth);
+}
+
+.auth-form.is-shaking {
+  animation: shake 0.42s var(--ease-out);
+}
+
+.auth-form__title {
+  margin: 0 0 clamp(36px, 8.6vh, 88px);
+  padding-left: 8px;
+  font-size: clamp(1.875rem, 3.056vw, 2.75rem); /* 30 → 44 */
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.auth-form__accent--login {
+  color: var(--c-link);
+}
+
+.auth-form__accent--register {
+  color: var(--c-accent-register);
+}
+
+.auth-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 5.2vh, 53px);
+}
+
+.auth-form__alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 24px 0 0;
+  padding: 12px 16px;
+  border: 1px solid rgb(198 40 40 / 0.25);
+  border-radius: 14px;
+  background: rgb(198 40 40 / 0.07);
+  color: var(--c-error);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  animation: fade-up 0.35s var(--ease-out) both;
+}
+
+.auth-form__alert svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.auth-form__actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.auth-form__submit {
+  width: calc(100% - 32px);
+  height: clamp(56px, 4.722vw, 68px);
+  font-size: clamp(1.25rem, 1.806vw, 1.625rem);
+}
+
+.auth-form__switch {
+  margin: 20px 0 0;
+  color: var(--c-ink-muted);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.auth-form__switch--admin {
+  margin-top: 10px;
+  font-size: 0.875rem;
+}
+
+.auth-form__link {
+  margin-left: 0.25em;
+  border-radius: 4px;
+  color: var(--c-link);
+  font-weight: 600;
+  text-decoration-color: transparent;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
+}
+
+.auth-form__link--spaced {
+  margin-left: 0.65em;
+}
+
+@media (hover: hover) {
+  .auth-form__link:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+@media (max-width: 767px) {
+  .auth-form__title {
+    margin-bottom: 32px;
+    font-size: 2rem;
+  }
+
+  .auth-form__fields {
+    gap: 24px;
+  }
+
+  .auth-form__actions {
+    margin-top: 32px;
+  }
+
+  .auth-form__submit {
+    width: 100%;
+  }
+}

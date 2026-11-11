@@ -1,0 +1,234 @@
+/*
+ * Lapisan kartu: .stat-card (posisi + animasi muncul)
+ * → .stat-card__float (melayang) → .stat-card__body (rotasi + hover).
+ */
+.stat-card {
+  position: absolute;
+  width: 54.613%; /* 296 / 542 */
+  aspect-ratio: 296 / 170;
+  animation: stat-pop 1s var(--ease-spring) var(--pop-delay, 0.55s) both;
+}
+
+.stat-card--1 {
+  --rotation: 14.3deg;
+  --pop-delay: 0.55s;
+  top: 0;
+  right: 0;
+}
+
+.stat-card--2 {
+  --rotation: -11.25deg;
+  --pop-delay: 0.7s;
+  bottom: 0;
+  left: 0;
+}
+
+.stat-card__float {
+  width: 100%;
+  height: 100%;
+  animation: float-y 6s var(--ease-in-out) infinite;
+}
+
+.stat-card--2 .stat-card__float {
+  animation-delay: -3s;
+}
+
+.stat-card__body {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-top: clamp(10px, 1.25vw, 18px);
+  border-radius: var(--radius-stat);
+  background: var(--c-stat);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  box-shadow: var(--shadow-stat);
+  color: var(--c-cream);
+  text-align: center;
+  transform: rotate(var(--rotation));
+  transition:
+    transform 0.6s var(--ease-spring),
+    box-shadow 0.6s var(--ease-out);
+}
+
+.stat-card__body:focus-visible {
+  outline: 3px solid var(--c-cream);
+  outline-offset: 4px;
+}
+
+/* Ditekan: sedikit mengecil */
+.stat-card__body:active {
+  transform: rotate(var(--rotation)) scale(0.96);
+  transition-duration: 0.15s;
+}
+
+/* Setelah diklik: pantulan kecil */
+.stat-card__body.is-bumped-0 {
+  animation: stat-bump-a 0.6s var(--ease-spring);
+}
+
+.stat-card__body.is-bumped-1 {
+  animation: stat-bump-b 0.6s var(--ease-spring);
+}
+
+@keyframes stat-bump-b {
+  0% {
+    transform: rotate(var(--rotation)) scale(0.95);
+  }
+  45% {
+    transform: rotate(calc(var(--rotation) * 0.6)) scale(1.06);
+  }
+  100% {
+    transform: rotate(var(--rotation)) scale(1);
+  }
+}
+
+@keyframes stat-bump-a {
+  0% {
+    transform: rotate(var(--rotation)) scale(0.95);
+  }
+  45% {
+    transform: rotate(calc(var(--rotation) * 0.6)) scale(1.06);
+  }
+  100% {
+    transform: rotate(var(--rotation)) scale(1);
+  }
+}
+
+/* Riak lembut dari titik klik */
+.stat-card__ripple {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: rgb(254 229 165 / 0.45);
+  pointer-events: none;
+  animation: stat-ripple 0.7s var(--ease-out) forwards;
+}
+
+@keyframes stat-ripple {
+  to {
+    opacity: 0;
+    transform: scale(26);
+  }
+}
+
+/* Rincian kecil yang muncul saat kartu diklik */
+.stat-card__detail {
+  position: relative;
+  margin-top: clamp(4px, 0.7vw, 10px);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: rgb(47 106 32 / 0.28);
+  color: var(--c-cream);
+  font-size: clamp(0.6875rem, 0.97vw, 0.875rem);
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(6px) scale(0.9);
+  transition:
+    opacity 0.3s var(--ease-out),
+    transform 0.45s var(--ease-spring);
+}
+
+.stat-card__body.is-open .stat-card__detail {
+  opacity: 1;
+  transform: none;
+}
+
+.stat-card__label {
+  display: block;
+  position: relative;
+  margin: 0;
+  font-size: var(--fs-stat-label);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stat-card__value {
+  display: block;
+  position: relative;
+  margin: clamp(8px, 1.181vw, 17px) 0 0;
+  font-size: var(--fs-stat-value);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-card__body.is-bumped-0,
+  .stat-card__body.is-bumped-1,
+  .stat-card__ripple {
+    animation: none;
+  }
+}
+
+@media (hover: hover) {
+  .stat-card__body:hover {
+    transform: rotate(calc(var(--rotation) * 0.4)) scale(1.05);
+    box-shadow: 0 28px 50px -16px rgb(20 50 10 / 0.5);
+  }
+}
+
+@keyframes stat-pop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 36px, 0) scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Tablet & HP: kartu ikut alur dokumen, berdampingan di bawah teks */
+@media (max-width: 1023px) {
+  .stat-card {
+    position: relative;
+    inset: auto;
+    width: min(296px, 42vw);
+  }
+
+  .stat-card--1 {
+    --rotation: 7deg;
+  }
+
+  .stat-card--2 {
+    --rotation: -6deg;
+  }
+
+  .stat-card__label {
+    font-size: clamp(0.8125rem, 2.2vw, 1.25rem);
+  }
+
+  .stat-card__value {
+    font-size: clamp(2.125rem, 7vw, 4rem);
+  }
+
+  .stat-card__body {
+    padding-top: clamp(12px, 2.2vw, 18px);
+  }
+}
+
+@media (max-width: 479px) {
+  .stat-card {
+    width: min(296px, 80vw);
+  }
+
+  .stat-card--1 {
+    --rotation: 4deg;
+  }
+
+  .stat-card--2 {
+    --rotation: -4deg;
+  }
+}

@@ -1,0 +1,199 @@
+/*
+ * Navbar: posisi awal persis desain (di dalam hero), lalu berubah menjadi
+ * kapsul kaca melayang setelah halaman di-scroll (.is-scrolled).
+ */
+.navbar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-navbar);
+  pointer-events: none;
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: clamp(20px, 10.625vw, 153px) clamp(16px, 4.167vw, 60px) 0 var(--gutter);
+  border: 1px solid transparent;
+  border-radius: 0;
+  transition:
+    max-width 0.5s var(--ease-out),
+    margin-top 0.5s var(--ease-out),
+    padding 0.5s var(--ease-out),
+    border-radius 0.5s var(--ease-out),
+    border-color 0.5s var(--ease-out),
+    background-color 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out);
+}
+
+.navbar__brand,
+.navbar__actions {
+  pointer-events: auto;
+}
+
+.navbar__brand {
+  display: block;
+  flex: none;
+  margin-top: clamp(0px, 1.25vw, 18px);
+  border-radius: 12px;
+  transition: margin-top 0.5s var(--ease-out);
+}
+
+.navbar__logo {
+  width: clamp(52px, 6.389vw, 92px);
+  transition: width 0.5s var(--ease-out);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.764vw, 11px);
+}
+
+.navbar__btn {
+  width: clamp(104px, 14.514vw, 209px);
+  height: clamp(44px, 4.861vw, 70px);
+  padding: 0 12px;
+  font-size: clamp(1rem, 1.667vw, 1.5rem);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    width 0.5s var(--ease-out),
+    height 0.5s var(--ease-out),
+    font-size 0.5s var(--ease-out);
+}
+
+/* Chip pengguna setelah login */
+.navbar__user {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 300px;
+  height: clamp(44px, 4.861vw, 70px);
+  padding: 0 clamp(14px, 1.667vw, 24px) 0 clamp(6px, 0.833vw, 12px);
+  border-radius: var(--radius-full);
+  background: var(--c-lime-soft);
+  color: var(--c-cream);
+  font-size: clamp(0.9375rem, 1.528vw, 1.375rem);
+  font-weight: 700;
+  text-decoration: none;
+  text-shadow: var(--shadow-text);
+  transition:
+    height 0.5s var(--ease-out),
+    font-size 0.5s var(--ease-out),
+    background-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .navbar__user:hover {
+    background: var(--c-lime-soft-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px -10px rgb(20 60 15 / 0.5);
+  }
+}
+
+.navbar__avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: clamp(32px, 3.333vw, 48px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--c-forest);
+  color: var(--c-cream);
+  font-size: 0.8em;
+  letter-spacing: 0.02em;
+  text-shadow: none;
+  transition: width 0.5s var(--ease-out);
+}
+
+.navbar__greeting {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- State setelah scroll ---------- */
+.navbar.is-scrolled .navbar__inner {
+  max-width: min(1240px, calc(100% - 24px));
+  margin-top: 14px;
+  padding: 8px 8px 8px 22px;
+  border-color: rgb(255 255 255 / 0.16);
+  border-radius: var(--radius-full);
+  background: rgb(64 128 44 / 0.78);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 12px 32px rgb(20 50 15 / 0.28);
+  pointer-events: auto;
+}
+
+.navbar.is-scrolled .navbar__brand {
+  margin-top: 2px;
+}
+
+.navbar.is-scrolled .navbar__logo {
+  width: 48px;
+}
+
+.navbar.is-scrolled .navbar__btn {
+  width: 132px;
+  height: 48px;
+  font-size: 1.125rem;
+}
+
+.navbar.is-scrolled .navbar__user {
+  height: 48px;
+  font-size: 1.0625rem;
+}
+
+.navbar.is-scrolled .navbar__avatar {
+  width: 36px;
+}
+
+/* ---------- HP ---------- */
+@media (max-width: 767px) {
+  .navbar__inner {
+    gap: 12px;
+    padding-right: 16px;
+  }
+
+  .navbar.is-scrolled .navbar__inner {
+    margin-top: 10px;
+    padding: 6px 6px 6px 14px;
+  }
+
+  .navbar.is-scrolled .navbar__logo {
+    width: 40px;
+  }
+
+  .navbar.is-scrolled .navbar__btn {
+    width: 96px;
+    height: 40px;
+    font-size: 0.9375rem;
+  }
+
+  .navbar.is-scrolled .navbar__user {
+    height: 40px;
+  }
+
+  .navbar.is-scrolled .navbar__avatar {
+    width: 30px;
+  }
+}
+
+@media (max-width: 479px) {
+  .navbar__greeting {
+    display: none;
+  }
+
+  .navbar__user {
+    padding: 0 6px;
+  }
+}

@@ -1,0 +1,90 @@
+/*
+ * Halaman Buat Laporan — ukuran mengikuti desain 1440px:
+ * judul di x=138, kartu foto 1172px di x=179, field 1100px di x=210.
+ */
+.create-report__form {
+  max-width: 1172px;
+  margin: 16px 0 0 clamp(0px, 2.847vw, 41px);
+}
+
+.create-report__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  max-width: 1131px;
+  margin-top: 26px;
+  padding: 0 clamp(0px, 2.153vw, 31px);
+}
+
+.create-report__alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgb(198 40 40 / 0.08);
+  color: var(--c-error);
+  font-weight: 500;
+  animation: shake 0.45s var(--ease-out);
+}
+
+.create-report__alert svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+.create-report__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  padding-top: 10px;
+  border-top: 2px dashed var(--c-line-cream);
+}
+
+.create-report__actions .btn {
+  margin-top: 18px;
+}
+
+.create-report__submit {
+  min-width: 230px;
+}
+
+.create-report__submit .btn__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.create-report__arrow {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+@media (hover: hover) {
+  .create-report__submit:hover .create-report__arrow {
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 767px) {
+  .create-report__form {
+    margin: 14px 0 0;
+  }
+
+  .create-report__fields {
+    gap: 22px;
+    margin-top: 22px;
+  }
+
+  .create-report__actions {
+    flex-direction: column-reverse;
+  }
+
+  .create-report__actions .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

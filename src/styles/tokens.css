@@ -1,0 +1,122 @@
+/*
+ * Design tokens JAGAFasum.
+ * Nilai diukur langsung dari desain 1440px; ukuran fluid memakai clamp()
+ * dengan nilai maksimum = ukuran desain, jadi di 1440px tampil persis.
+ */
+:root {
+  /* Warna brand */
+  --c-moss: #76a466;
+  --c-forest: #40802c;
+  --c-forest-deep: #2f6a20;
+  --c-lime: #c0ff72;
+  --c-lime-bright: #b8ff45;
+  --c-lime-soft: #d4f4b3;
+  --c-lime-soft-hover: #e1f9c8;
+  --c-leaf: #9dd347;
+  --c-leaf-hover: #aadd57;
+  --c-stat: rgb(154 214 76 / 0.82);
+  --c-cream: #fee5a5;
+  --c-cream-soft: #fde9b5;
+  --c-cream-muted: #f5e7b7;
+  --c-circle: #ffe5ae;
+  --c-paper: #f7f8f2;
+  --c-amber: #fdd150;
+  --c-gray-600: #686868;
+  --c-gray-800: #444444;
+  --c-white: #ffffff;
+
+  /* Warna halaman auth */
+  --c-ink: #000000;
+  --c-ink-muted: #5a5757;
+  --c-link: #1e7203;
+  --c-accent-register: #3f7e2a;
+  --c-btn: #4fa334;
+  --c-btn-hover: #45952c;
+  --c-btn-text: #ffeaea;
+  --c-error: #c62828;
+
+  /* Warna ilustrasi skyline */
+  --c-building: #233600;
+  --c-window-warm: #fbee9b;
+  --c-window-peach: #f9e6a0;
+  --c-window-mint: #daf9a3;
+  --c-window-off: #5a7a00;
+  --c-rim: #c8ff2e;
+  --c-beacon: #de403c;
+
+  /* Tipografi */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-auth: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-display: clamp(2.375rem, 4.444vw, 4rem); /* 38 → 64 */
+  --fs-title: clamp(1.5rem, 2.778vw, 2.5rem); /* 24 → 40 */
+  --fs-category: clamp(1.25rem, 2.222vw, 2rem); /* 20 → 32 */
+  --fs-body: clamp(1rem, 1.667vw, 1.5rem); /* 16 → 24 */
+  --fs-pill: clamp(0.9375rem, 1.667vw, 1.5rem); /* 15 → 24 */
+  --fs-stat-label: clamp(0.8125rem, 1.389vw, 1.25rem); /* 13 → 20 */
+  --fs-stat-value: clamp(2.5rem, 4.444vw, 4rem); /* 40 → 64 */
+
+  /* Layout */
+  --container: 1440px;
+  --gutter: clamp(20px, 7.083vw, 102px);
+
+  /* Radius */
+  --radius-section: clamp(32px, 5.556vw, 80px);
+  --radius-photo: clamp(24px, 2.778vw, 40px);
+  --radius-stat: clamp(26px, 2.917vw, 42px);
+  --radius-pill: 14px;
+  --radius-input: 20px;
+  --radius-full: 999px;
+
+  /* Bayangan */
+  --shadow-photo: 0 8px 12px -2px rgb(0 0 0 / 0.38);
+  --shadow-stat: 0 18px 40px -12px rgb(20 50 10 / 0.35);
+  --shadow-section-edge: 0 6px 12px rgb(25 60 15 / 0.35);
+  --shadow-text: 0 2px 4px rgb(0 0 0 / 0.25);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 700ms;
+
+  /* Warna area dashboard (diukur dari desain Buat Laporan) */
+  --c-sidebar: #40802c;
+  --c-nav-btn: #5ad23c;
+  --c-nav-btn-hover: #6fe04f;
+  --c-nav-icon: #1d5f0c;
+  --c-dash-bg: #f7f8f2;
+  --c-dash-title: #1e7203;
+  --c-line-cream: #fbe7a6;
+  --c-line-cream-strong: #f7d77c;
+  --c-dropzone: #fcf4e4;
+  --c-placeholder: #a0a0a0;
+  --c-surface: #ffffff;
+  --c-text-soft: #5f6b58;
+  /* Warna status laporan (diukur dari desain dashboard) */
+  --c-status-pending: #a44e35;
+  --c-status-pending-bg: #f6e1d9;
+  --c-status-progress: #d4af0a;
+  --c-status-progress-bg: #fbf0c4;
+  --c-status-done: #41a334;
+  --c-status-done-bg: #e3f6d8;
+  --c-yellow-bar: #f9c949;
+  --c-stripe: #fce4a6;
+  --c-cta-dark: #1c6901;
+  --c-danger: #c2410c;
+  --c-danger-bg: #fdebe1;
+
+  --sidebar-w: clamp(84px, 6.944vw, 100px);
+  --radius-card: 16px;
+  --radius-field: 999px;
+  --shadow-card: 0 14px 34px -22px rgb(30 70 15 / 0.45);
+  --shadow-pop: 0 30px 70px -24px rgb(15 40 8 / 0.55);
+
+  /* Lapisan */
+  --z-sidebar: 40;
+  --z-navbar: 50;
+  --z-toast: 60;
+  --z-modal: 70;
+}

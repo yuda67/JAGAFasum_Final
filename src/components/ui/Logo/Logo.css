@@ -1,0 +1,26 @@
+.logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.logo__shape {
+  fill: var(--logo-color, var(--c-lime));
+}
+
+.logo__dashes {
+  fill: var(--logo-dash, var(--c-white));
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+/* Garis putus-putus "jalan" bergeser saat logo di-hover (dipicu dari elemen induk .logo-link) */
+@media (hover: hover) {
+  .logo-link:hover .logo__dashes--top {
+    transform: translateX(4px);
+  }
+
+  .logo-link:hover .logo__dashes--bottom {
+    transform: translateX(-4px);
+  }
+}

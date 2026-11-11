@@ -1,0 +1,218 @@
+/*
+ * Alur pelaporan zig-zag (desktop 1180 × 121). Posisi pill memakai persen
+ * supaya seluruh diagram menyusut proporsional di layar yang lebih kecil.
+ */
+.flow {
+  position: relative;
+  z-index: 2;
+  width: min(1180px, calc(100% - 2 * var(--gutter)));
+  aspect-ratio: 1180 / 121;
+  margin: clamp(40px, 4.792vw, 69px) auto 0;
+}
+
+.flow__arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.flow__arrow {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.8s var(--ease-out) calc(var(--i) * 140ms + 260ms);
+}
+
+.flow.is-visible .flow__arrow {
+  clip-path: inset(-10px -10px -10px -10px);
+}
+
+.flow__arrow-line {
+  fill: none;
+  stroke: var(--c-white);
+  stroke-width: 2.5;
+  stroke-dasharray: 5 4;
+  animation: dash-flow 1.4s linear infinite;
+}
+
+.flow__arrow-head {
+  fill: none;
+  stroke: var(--c-white);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.flow__steps {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow__step {
+  position: absolute;
+  top: calc(var(--row) * 53.719%); /* 65 / 121 */
+  left: calc(var(--col) * 20.1695%); /* 238 / 1180 */
+  width: 19.322%; /* 228 / 1180 */
+  height: 46.281%; /* 56 / 121 */
+  opacity: 0;
+  transform: translate3d(0, 18px, 0) scale(0.94);
+  transition:
+    opacity 0.6s var(--ease-out) calc(var(--col) * 120ms),
+    transform 0.75s var(--ease-spring) calc(var(--col) * 120ms);
+}
+
+.flow.is-visible .flow__step {
+  opacity: 1;
+  transform: none;
+}
+
+.flow__pill {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 8px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--c-leaf);
+  color: var(--c-cream-soft);
+  font: 700 var(--fs-pill) / 1 var(--font-sans);
+  cursor: help;
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.flow__step:hover .flow__pill,
+.flow__pill:focus-visible {
+  background: var(--c-leaf-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 22px -10px rgb(10 40 5 / 0.55);
+}
+
+.flow__tooltip {
+  position: absolute;
+  left: 50%;
+  z-index: 3;
+  width: max-content;
+  max-width: 240px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--c-forest-deep);
+  color: var(--c-cream);
+  font: 600 0.9375rem/1.35 var(--font-sans);
+  text-align: center;
+  box-shadow: 0 14px 30px -12px rgb(0 0 0 / 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s var(--ease-out),
+    transform 0.25s var(--ease-out);
+}
+
+.flow__tooltip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.flow__tooltip--above {
+  bottom: calc(100% + 14px);
+  transform: translate(-50%, 6px);
+}
+
+.flow__tooltip--above::after {
+  bottom: -5px;
+}
+
+.flow__tooltip--below {
+  top: calc(100% + 14px);
+  transform: translate(-50%, -6px);
+}
+
+.flow__tooltip--below::after {
+  top: -5px;
+}
+
+.flow__step:hover .flow__tooltip,
+.flow__step:focus-within .flow__tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- Tablet & HP: stepper vertikal ---------- */
+@media (max-width: 1023px) {
+  .flow {
+    width: min(360px, calc(100% - 2 * var(--gutter)));
+    aspect-ratio: auto;
+  }
+
+  .flow__arrows {
+    display: none;
+  }
+
+  .flow__steps {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .flow__step {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+  }
+
+  .flow__pill {
+    height: 52px;
+    font-size: 1.25rem;
+    cursor: default;
+  }
+
+  .flow__tooltip {
+    position: static;
+    width: auto;
+    max-width: none;
+    margin-top: 10px;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    color: rgb(254 229 165 / 0.85);
+    font-size: 0.875rem;
+    opacity: 1;
+    transform: none;
+  }
+
+  .flow__tooltip::after {
+    display: none;
+  }
+
+  .flow__step:hover .flow__tooltip,
+  .flow__step:focus-within .flow__tooltip {
+    transform: none;
+  }
+
+  /* Penghubung putus-putus + panah ke bawah antar langkah */
+  .flow__step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    width: 14px;
+    height: 32px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 32'%3E%3Cpath d='M7 1v25' stroke='white' stroke-width='2.5' stroke-dasharray='5 4' fill='none'/%3E%3Cpath d='M1.5 22 7 28l5.5-6' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,361 @@
+.report-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  font-family: var(--font-sans);
+}
+
+.report-detail__media {
+  position: relative;
+  min-height: 100%;
+  background: #1f2a17;
+}
+
+.report-detail__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 560px;
+  object-fit: cover;
+}
+
+.report-detail__close {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.94);
+  color: var(--c-gray-800);
+  box-shadow: 0 8px 18px -8px rgb(0 0 0 / 0.5);
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.report-detail__close svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (hover: hover) {
+  .report-detail__close:hover {
+    transform: rotate(90deg);
+  }
+}
+
+.report-detail__body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 30px 30px 28px;
+}
+
+.report-detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.report-detail__category {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 28px;
+  padding: 0 12px 0 9px;
+  border-radius: var(--radius-full);
+  background: var(--c-lime-soft);
+  color: var(--c-forest-deep);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.report-detail__category svg {
+  width: 16px;
+  height: 16px;
+}
+
+.report-detail__title {
+  margin: 0;
+  color: var(--c-ink);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.report-detail__desc {
+  margin: 0;
+  color: var(--c-gray-800);
+  font-size: 1rem;
+  line-height: 1.6;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.report-detail__facts {
+  display: grid;
+  gap: 12px;
+  margin: 4px 0 0;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--c-dash-bg);
+}
+
+.report-detail__facts dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--c-gray-600);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.report-detail__facts dt svg {
+  width: 15px;
+  height: 15px;
+}
+
+.report-detail__facts dd {
+  margin: 4px 0 0;
+  color: var(--c-ink);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.report-detail__map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  color: var(--c-link);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.report-detail__map-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.report-detail__map-link:hover {
+  text-decoration: underline;
+}
+
+/* Progres alur laporan */
+.report-detail__steps {
+  display: flex;
+  gap: 4px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.report-detail__step {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--c-placeholder);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.report-detail__step::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 50%;
+  left: -50%;
+  height: 3px;
+  border-radius: 3px;
+  background: #e7e7df;
+}
+
+.report-detail__step:first-child::before {
+  display: none;
+}
+
+.report-detail__step.is-done {
+  color: var(--c-forest-deep);
+}
+
+.report-detail__step.is-done::before {
+  background: var(--c-btn);
+  animation: step-fill 0.5s var(--ease-out) both;
+  animation-delay: calc(var(--i) * 120ms + 200ms);
+  transform-origin: left;
+}
+
+.report-detail__dot {
+  position: relative;
+  z-index: 1;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #e7e7df;
+  border-radius: 50%;
+  background: var(--c-surface);
+}
+
+.report-detail__step.is-done .report-detail__dot {
+  border-color: var(--c-btn);
+  background: var(--c-btn);
+}
+
+.report-detail__step[aria-current="step"] .report-detail__dot {
+  box-shadow: 0 0 0 5px rgb(79 163 52 / 0.2);
+}
+
+.report-detail__step.is-next .report-detail__dot {
+  border-color: var(--c-line-cream-strong);
+}
+
+@keyframes step-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .report-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .report-detail__media img {
+    max-height: 260px;
+  }
+
+  .report-detail__body {
+    padding: 22px 20px 22px;
+  }
+
+  .report-detail__title {
+    font-size: 1.375rem;
+  }
+}
+
+/* ---------- Before/after, catatan, riwayat, aksi admin ---------- */
+.report-detail__media {
+  align-self: stretch;
+}
+
+.report-detail__compare {
+  position: sticky;
+  top: 0;
+  height: 100%;
+  min-height: 420px;
+  max-height: 560px;
+}
+
+.report-detail__close {
+  z-index: 4;
+}
+
+.report-detail__note {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 10px;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--c-status-progress-bg);
+  color: #5b4500;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.report-detail__note svg {
+  width: 20px;
+  height: 20px;
+}
+
+.report-detail__resolved {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--c-status-done-bg);
+}
+
+.report-detail__resolved p {
+  margin: 0;
+}
+
+.report-detail__resolved-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--c-forest-deep);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.report-detail__resolved-title svg {
+  width: 17px;
+  height: 17px;
+  stroke-width: 2.6;
+}
+
+.report-detail__resolved-by {
+  color: var(--c-text-soft);
+  font-size: 0.8125rem;
+}
+
+.report-detail__resolved-note {
+  margin-top: 4px !important;
+  color: var(--c-gray-800);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.report-detail__history {
+  border-top: 1.5px solid #efeee6;
+  padding-top: 12px;
+}
+
+.report-detail__history summary {
+  margin-bottom: 4px;
+  color: var(--c-dash-title);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.report-detail__history[open] summary {
+  margin-bottom: 14px;
+}
+
+.report-detail__manage {
+  justify-self: start;
+}
+
+.report-detail__manage .btn__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.report-detail__manage-icon {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 767px) {
+  .report-detail__compare {
+    position: relative;
+    min-height: 0;
+    height: 260px;
+  }
+}

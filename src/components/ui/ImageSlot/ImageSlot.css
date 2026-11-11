@@ -1,0 +1,92 @@
+.image-slot {
+  position: relative;
+  overflow: hidden;
+  background: var(--c-forest);
+}
+
+.image-slot__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out);
+}
+
+.image-slot.is-loaded .image-slot__img {
+  opacity: 1;
+}
+
+/* ---------- Placeholder (selama gambar belum ditambahkan) ---------- */
+.image-slot__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.image-slot__frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  border: 2px dashed rgb(255 255 255 / 0.32);
+  border-radius: calc(var(--radius-photo) - 10px);
+  color: rgb(255 255 255 / 0.78);
+  text-align: center;
+}
+
+.image-slot__icon {
+  width: 44px;
+  height: 44px;
+  opacity: 0.85;
+}
+
+.image-slot__hint {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 90%;
+  font: 600 0.8125rem/1.45 var(--font-sans);
+  color: rgb(255 255 255 / 0.82);
+}
+
+.image-slot__hint strong {
+  font-size: 0.9375rem;
+  color: var(--c-white);
+}
+
+/* Tone: kartu foto fasilitas */
+.image-slot--card.is-empty {
+  background:
+    radial-gradient(120% 90% at 20% 0%, rgb(255 255 255 / 0.18), transparent 55%),
+    linear-gradient(150deg, #64a24d 0%, #3b7a2a 55%, #2c5e1f 100%);
+}
+
+/* Tone: latar hero (langit kota → hijau) */
+.image-slot--hero.is-empty {
+  background:
+    radial-gradient(70% 55% at 72% 8%, rgb(255 255 255 / 0.35), transparent 70%),
+    linear-gradient(180deg, #a9bfc0 0%, #95ae9e 32%, #7d9a70 58%, #5b8a45 76%, #40802c 92%);
+}
+
+/* Tone: panel kiri halaman auth */
+.image-slot--auth.is-empty {
+  background:
+    radial-gradient(80% 50% at 30% 0%, rgb(255 255 255 / 0.16), transparent 70%),
+    linear-gradient(180deg, #5ca851 0%, #3a7040 50%, #14260c 100%);
+}
+
+.image-slot--auth .image-slot__placeholder {
+  padding: clamp(16px, 2.2vw, 28px);
+}
+
+.image-slot--auth .image-slot__frame {
+  border-radius: 28px;
+  border-color: rgb(255 255 255 / 0.22);
+}

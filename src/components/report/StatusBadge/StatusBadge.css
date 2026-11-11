@@ -1,0 +1,39 @@
+/* Kapsul 141×37 (desain), warna: Pending merah bata, In Progress kuning, Resolved hijau */
+.status-badge {
+  --tone: var(--c-status-pending);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 141px;
+  height: 37px;
+  padding: 0 18px;
+  border-radius: var(--radius-full);
+  background: var(--tone);
+  color: var(--c-white);
+  font: 600 0.9375rem/1 var(--font-sans);
+  white-space: nowrap;
+}
+
+.status-badge--progress {
+  --tone: var(--c-status-progress);
+}
+
+.status-badge--done {
+  --tone: var(--c-status-done);
+}
+
+/* Versi ringkas untuk daftar & panel admin */
+.status-badge--sm {
+  min-width: 0;
+  height: 26px;
+  padding: 0 11px;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 767px) {
+  .status-badge:not(.status-badge--sm) {
+    min-width: 116px;
+    height: 32px;
+    font-size: 0.875rem;
+  }
+}
